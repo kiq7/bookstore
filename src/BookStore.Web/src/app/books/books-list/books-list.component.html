@@ -1,0 +1,33 @@
+<div class="container">
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">
+        <span *ngIf="loading">Carregando</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+        <button (click)="openModalInsert($event)" class="btn btn-outline-primary">
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+        Adicionar livro
+      </button>
+        </li>
+  </ul>
+  <br />
+  <div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+  </div>
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th>ISBN</th>
+        <th>Titulo</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of bookList" [book]="book" app-books-list-item>
+      </tr>
+    </tbody>
+  </table>
+</div>

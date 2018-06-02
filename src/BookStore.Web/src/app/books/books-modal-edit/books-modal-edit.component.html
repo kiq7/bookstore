@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h3 class="modal-title pull-left">{{title}}</h3>
+  <button type="button" class="close pull-right" aria-label="Fechar" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form novalidate [formGroup]="modalForm">
+    <div class="form-row">
+      <div class="form-group col-md-12" > 
+        <label for="inputIsbn" class="col-form-label">ISBN</label>
+        <input disabled [(ngModel)]="book.isbn" formControlName="isbn" type="text" class="form-control" [ngClass]="{
+          'is-invalid': modalForm.controls.isbn.invalid && (modalForm.controls.isbn.dirty || modalForm.controls.isbn.touched),
+          'is-valid': modalForm.controls.isbn.valid && (modalForm.controls.isbn.dirty || modalForm.controls.isbn.touched)
+        }">
+        <div *ngIf="modalForm.controls.isbn.invalid && (modalForm.controls.isbn.dirty || modalForm.controls.isbn.touched)" class="invalid-feedback">
+            ISBN deve conter no pelo menos 10 caracteres e no máximo 13 caracteres
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputTitle" class="col-form-label">Titulo</label>
+        <input [(ngModel)]="book.title" formControlName="title" type="text" class="form-control" [ngClass]="{
+          'is-invalid': modalForm.controls.title.invalid && (modalForm.controls.title.dirty || modalForm.controls.title.touched),
+          'is-valid': modalForm.controls.title.valid && (modalForm.controls.title.dirty || modalForm.controls.title.touched)
+        }">
+        <div *ngIf="modalForm.controls.title.invalid && (modalForm.controls.title.dirty || modalForm.controls.title.touched)" class="invalid-feedback">
+            Livro deve possuir no mínimo 2 e no máximo 100 caracteres
+        </div>
+      </div>
+      <div class="form-group col-md-12" > 
+        <label for="inputAuthor" class="col-form-label">Autor</label>
+        <input [(ngModel)]="book.author" formControlName="author" type="text" class="form-control" [ngClass]="{
+          'is-invalid': modalForm.controls.author.invalid && (modalForm.controls.author.dirty || modalForm.controls.author.touched),
+          'is-valid': modalForm.controls.author.valid && (modalForm.controls.author.dirty || modalForm.controls.author.touched)
+        }">
+        <div *ngIf="modalForm.controls.author.invalid && (modalForm.controls.author.dirty || modalForm.controls.author.touched)" class="invalid-feedback">
+            Autor deve possuir no mínimo 2 e no máximo 20 caracteres
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputPublisher" class="col-form-label">Editora</label>
+        <input [(ngModel)]="book.publisher" formControlName="publisher" type="text" class="form-control" [ngClass]="{
+          'is-invalid': modalForm.controls.publisher.invalid && (modalForm.controls.publisher.dirty || modalForm.controls.publisher.touched),
+          'is-valid': modalForm.controls.publisher.valid && (modalForm.controls.publisher.dirty || modalForm.controls.publisher.touched)
+        }">
+        <div *ngIf="modalForm.controls.publisher.invalid && (modalForm.controls.publisher.dirty || modalForm.controls.publisher.touched)" class="invalid-feedback">
+            Campo obrigatório
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="bsModalRef.hide()">Fechar</button>
+  <button type="button" class="btn btn-outline-primary" (click)="onClickSave()" [disabled]="!modalForm.valid">Atualizar livro</button>
+</div>

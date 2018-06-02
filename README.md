@@ -2,7 +2,7 @@
 
 An simple app to manage books.
 
-You can see/
+You can test/use project in http://kiqbookstore.azurewebsites.net/
 
 ## Getting Started
 
